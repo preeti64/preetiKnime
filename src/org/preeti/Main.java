@@ -1,11 +1,12 @@
- package org.preeti;
+ package org.preeti; 
  import java.io.IOException;
  import java.util.ArrayList;
  import java.io.File;
  import java.io.FileWriter;
  import java.util.Scanner;
  import java.io.PrintWriter;
- import java.util.Arrays;
+ import java.lang.Thread;
+ 
 
  /**
   * Main class.
@@ -13,20 +14,31 @@
   * @author KNIME GmbH
   */
  public class Main{
-
+     
+     private static String[] savedArgs;
+     public static String[] getArgs() {
+         return savedArgs;
+         }
+        
      public static void main(String args[]) {
+        savedArgs = args;
+        Thread claOperations = new ClaOperations();
+        claOperations.start();
+     }
+ }
+
+ class ClaOperations extends Thread {      
+       public void run(){  
+         String[] args = Main.getArgs();
          ArrayList<String> lines = new ArrayList<>();
          String output = "";
          String text = "";
-
          String inFile = args[1];
          String outFile = args[9];
          String inputType = args[3];
-
          String operations = args[5];
          File file = new File(inFile);
-
-         try {
+        try {
              String num = "";
              Scanner in = new Scanner(file);
              while ( in .hasNextLine()) {
@@ -61,8 +73,9 @@
                      }
                      lines.add(output);
                  }
+                 
              }
-
+             in.close();
 
          } catch (IOException e) {
              e.printStackTrace();
@@ -72,7 +85,6 @@
          try {
              FileWriter fileWriter = new FileWriter(outFile);
              PrintWriter printWriter = new PrintWriter(fileWriter);
-             PrintWriter out = new PrintWriter(outFile);
              lines.forEach((line) -> {
                  printWriter.printf(line + "\n");
              });
@@ -83,10 +95,8 @@
              e.printStackTrace();
              System.exit(0);
          }
-         
-     
      }
-
+     
      static int reverseNumber(int number) {
          int reverse = 0;
          while (number != 0) {
@@ -106,6 +116,6 @@
          return reversedStr;
 
      }
-     
-
- }
+           }
+       
+       
