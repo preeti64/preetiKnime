@@ -14,22 +14,36 @@
   * @author KNIME GmbH
   */
  public class Main{
-     
+     /**
+      * Argument and accessor of main args(arguments) to be used in the Thread Class
+      */
      private static String[] savedArgs;
      public static String[] getArgs() {
          return savedArgs;
          }
         
      public static void main(String args[]) {
+    	 
+    	/**
+    	 * Saving the args for later use
+    	 */
         savedArgs = args;
         Thread claOperations = new ClaOperations();
-        claOperations.start();
+        claOperations.start();	   
      }
  }
 
  class ClaOperations extends Thread {      
-       public void run(){  
-         String[] args = Main.getArgs();
+      public void run(){  
+    	  // Getting the arguments passed as Command Line Arguments to the Main Class
+          String[] args = Main.getArgs();
+          /**
+           * Assigning arguments to variables for better understanding 
+           * inFile will have the value at args[1]for the given input file
+           * outFile will have the value at args[1]for the given input file
+           * inputType specifies the type of input being passed (string|int|double)
+           * operations specifies the type of operation(rev|cap|neg) for each inputtype (string|int|double)
+           */
          ArrayList<String> lines = new ArrayList<>();
          String output = "";
          String text = "";
@@ -43,6 +57,7 @@
              Scanner in = new Scanner(file);
              while ( in .hasNextLine()) {
                  String line = in .nextLine();
+                 //Checking for the input type of File
                  if (inputType.equals("int") || (inputType.equals("double"))) {
                      num = line;
                      output = num;
@@ -96,8 +111,12 @@
              System.exit(0);
          }
      }
-     
-     static int reverseNumber(int number) {
+     /**
+      * 
+      * @param number takes the number as input from the File
+      * @return the reversed number
+      */
+      int reverseNumber(int number) {
          int reverse = 0;
          while (number != 0) {
              int remainder = number % 10;
@@ -106,8 +125,12 @@
          }
          return reverse;
      }
-
-     static String reverseString(String str) {
+      /**
+       * 
+       * @param str takes string as input from the File
+       * @return the reversed string
+       */
+      String reverseString(String str) {
          String reversedStr = "";
          for (int i = str.length() - 1; i >= 0; i--) {
              char ch = str.charAt(i);
@@ -116,6 +139,7 @@
          return reversedStr;
 
      }
+     
            }
        
        
