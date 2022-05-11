@@ -3,6 +3,9 @@
 ### Done
 Task to implement Command Line Argumnets with File Operations
 I have completed Task 1 and Task 2. The output is coming as expected. I am able to write to the Output file with the desired result.
+Thread implementation is done.
+Test Cases completed.
+Javadoc completed.
 
 ### Demo
  
@@ -11,6 +14,5 @@ I have completed Task 1 and Task 2. The output is coming as expected. I am able
 ![output int](https://user-images.githubusercontent.com/58847237/166149784-db686c6b-1da5-415b-917f-399ca616fd90.png)
 
 ### TODO
-1. Using the number of threads in command line arguments 
-2. To write test cases.3. 
-3. To write Javadoc.
+1. updating Statistics.java for getInstance() method as I am not sure what to display here.
+2. Code Optimization
